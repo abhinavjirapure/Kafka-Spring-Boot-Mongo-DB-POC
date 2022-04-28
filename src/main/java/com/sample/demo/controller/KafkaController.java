@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/kafka")
@@ -26,4 +28,11 @@ public class KafkaController {
      logger.info("Returning addEmpData response ");
      return new ResponseEntity<>("Employee On-boarding details added Successfully...", HttpStatus.OK);
     }
+    @GetMapping("/find/emp/details")
+    public ResponseEntity<List<EmployeeDetails>> findAllEmployees(){
+        logger.info("Inside findAllEmployees method of kafka controller class ");
+        logger.info("Returning findAllEmployees response ");
+        return new ResponseEntity<>(producer.findAllEmployees(), HttpStatus.OK);
+    }
+
 }
